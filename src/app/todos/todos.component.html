@@ -1,0 +1,24 @@
+<!-- *ngIf permet de créer un condition à l'apparition de l'élément HTML-->
+<div *ngIf = "appState=='default'">
+  <h3>add Todo</h3>
+    <form (submit)="addTodo()">
+      <input type="text" [(ngModel)]="todo_name" name="new_todo"/>
+    </form>
+</div>
+<div *ngIf = "appState=='edit'">
+  <h3>edit Todo</h3>
+    <form (submit)="updateTodo()">
+      <input type="text" [(ngModel)]="todo_name" name="new_todo"/>
+    </form>
+</div>
+
+<h3>Todo List </h3>
+<ul>
+  <!-- *ngFor permet de générer autant d'élément HTML que le tableau en contient -->
+  <li *ngFor="let todo of todos">
+    <span (click)="editTodo(todo)">
+    {{todo.text}}
+    <button (click)="deleteTodo(todo)">x</button>
+    </span>
+  </li>
+</ul>
